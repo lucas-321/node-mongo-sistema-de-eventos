@@ -1,0 +1,24 @@
+<h4>Eventos</h4>
+<hr>
+<a href="/admin/eventos/add"><button class="btn btn-success">Novo evento</button></a>
+
+{{#each eventos}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <p><b>{{nome}}</b></p>
+            <small>Data: {{dateFormat data "DD/MM/YYYY"}}</small><br>
+            <small>Abertura: {{dateFormat dataAbreInscricao "DD/MM/YYYY"}}</small><br>
+            <small>Encerramento: {{dateFormat dataFechaInscricao "DD/MM/YYYY"}}</small><br>
+            <small>Tipo: {{tipo.descricao}}</small><br>
+            <a href="/admin/eventos/edit/{{_id}}"><button class="btn btn-primary">Editar</button></a>
+
+            <form action="/admin/eventos/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este evento?');">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Remover</button>
+            </form>
+
+        </div>
+    </div>
+{{else}}
+    <p>Nenhum evento registrado</p>
+{{/each}}

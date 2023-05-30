@@ -1,0 +1,30 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+
+<div class="card">
+    <div class="card-body">
+        <h4>Seus dados</h4>
+        <form name="editSenha" action="/usuarios/senha/edit" method="POST">
+
+            <input type="hidden" value="{{usuario._id}}" name="id">
+    
+            <label for="senha"><b>Insira sua senha atual:</b></label>
+                <input type="password" name="senhaAtual" id="senhaAtual" class="form-control" value="" required>
+
+            <label for="senha"><b>Insira sua nova senha:</b></label>
+                <input type="password" name="senha" id="senha" class="form-control" value="" required>
+            <label for="nome"><b>Repita sua nova senha:</b></label>
+                <input type="password" name="senha2" id="senha2" class="form-control" required>
+
+            <button class="btn btn-success mt-2" type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+  document.getElementById('igreja').value = "{{usuario.igreja}}";
+  document.getElementById('sexo').value = "{{usuario.sexo}}";
+</script>

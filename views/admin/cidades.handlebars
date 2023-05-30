@@ -1,0 +1,20 @@
+<h4>Cidades</h4>
+<hr>
+<a href="/admin/cidades/add"><button class="btn btn-success">Nova cidade</button></a>
+
+{{#each cidades}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <p><b>{{nome}}</b></p>
+            <a href="/admin/cidades/edit/{{_id}}"><button class="btn btn-primary">Editar</button></a>
+
+            <form action="/admin/cidades/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta cidade?');">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Remover</button>
+            </form>
+
+        </div>
+    </div>
+{{else}}
+    <p>Nenhuma cidade registrada</p>
+{{/each}}

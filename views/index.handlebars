@@ -1,0 +1,87 @@
+<div class="jumbotron">
+  <h1 class="display-4">Bem vindo ao nosso Sistema!</h1>
+  <p class="lead">Inscrições para o Conjubal, Jubalcamp e outros eventos.</p>
+  <hr class="my-4">
+  <p>Inscreva-se e participe dos nossos eventos.</p>
+  {{#if user}}
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="/usuarios/usuarios/edit/{{idDoUsuario}}" role="button">Alterar dados</a>
+  </p>
+  {{else}}
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="/usuarios/registro" role="button">Crie uma conta</a>
+  </p>
+  {{/if}}
+</div>
+
+<hr>
+{{#if user}}
+{{#each eventos}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <p><b>{{nome}}</b><br>{{tema}}<br></p>
+            <small><b>Local:</b> {{local.nome}}</small><br>
+            <small><b>Valor: </b>R$ {{valorInscricao}}</small><br>
+            <small><b>Data:</b> {{dateFormat data "DD/MM/YYYY"}}</small><br>
+            <small><b>Abertura:</b> {{dateFormat dataAbreInscricao "DD/MM/YYYY"}}</small><br>
+            <small><b>Encerramento:</b> {{dateFormat dataFechaInscricao "DD/MM/YYYY"}}</small><br>
+            <small><b>Tipo:</b> {{tipo.descricao}}</small><br>
+
+            {{#if confirmacao}}
+              <div class="alert alert-info" role="alert">
+                Sua inscrição foi confirmada.
+              </div>
+            {{else}}
+              {{#if dentroDoPeriodo}}
+                {{#if vagasEsgotadas}}
+                    <div class="alert alert-warning" role="alert">
+                      Todas as vagas para esse evento foram preenchidas.
+                    </div>
+                {{else}}
+                  {{#if usuarioInscrito}}
+                    {{#if ativo}}
+                      <button type="button" id="btn{{_id}}" class="btn btn-success mt-2" onclick="return alert('Você já está inscrito nesse evento!')">Inscrito</button>
+                      <form action="/usuarios/inscricoes/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta inscrição?');">
+                          <input type="hidden" name="inscricao" value="{{inscricaoId}}">
+                          <button type="submit" class="btn btn-danger mt-2">Cancelar</button>
+                      </form>
+                    {{else}}
+                      <form action="/usuarios/inscricoes/reativar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta inscrição?');">
+                          <input type="hidden" name="inscricao" value="{{inscricaoId}}">  
+                          <button type="submit" class="btn btn-outline-success mt-2">Inscreva-se</button>
+                      </form>
+                    {{/if}}
+                  {{else}}
+                    <form action="/usuarios/inscricoes/nova" method="POST" onsubmit="return confirm('Tem certeza que deseja inscrever-se neste evento?');">
+                        <input type="hidden" name="evento" value="{{_id}}">
+                        <input type="hidden" name="usuario" class="inscricao-usuario" value="{{idDoUsuario}}">
+                        <button type="submit" id="btn{{_id}}" class="btn btn-outline-success mt-2">Inscreva-se</button>
+                    </form>
+                  {{/if}}
+                {{/if}}
+              {{else}}
+                  <div class="alert alert-danger" role="alert">
+                      Fora do período de inscrições.
+                  </div>
+              {{/if}}
+            {{/if}}
+            
+        </div>
+    </div>
+{{else}}
+    <p>Nenhum evento registrado</p>
+{{/each}}
+{{else}}
+{{/if}}
+
+<script>
+        var inscricoes = document.querySelectorAll('.card-body');
+
+        inscricoes.forEach(function(inscricao) {
+            var inputUsuario = inscricao.querySelector('.inscricao-usuario');
+            if (inputUsuario) {
+                inputUsuario.value = "{{idDoUsuario}}";
+            }
+        });
+      
+</script>

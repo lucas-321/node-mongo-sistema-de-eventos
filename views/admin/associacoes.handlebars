@@ -1,0 +1,28 @@
+<h4>Associações</h4>
+<hr>
+<a href="/admin/associacoes/add"><button class="btn btn-success">Nova Associação</button></a>
+
+{{#each associacoes}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <p><b>{{sigla}} - {{nome}}</b></p>
+            <a href="/admin/associacoes/edit/{{_id}}"><button class="btn btn-primary">Editar</button></a>
+
+            <form action="/admin/associacoes/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta Associação?');">
+                <input type="hidden" name="id" value="{{_id}}">
+                <input type="hidden" name="usuarioExclusao" value="">
+                <button type="submit" class="btn btn-danger mt-2">Remover</button>
+            </form>
+
+        </div>
+    </div>
+{{else}}
+    <p>Nenhuma associação registrada</p>
+{{/each}}
+
+<script>
+    const usuarioExclusaoElements = document.querySelectorAll('input[name="usuarioExclusao"]');
+    usuarioExclusaoElements.forEach((element) => {
+        element.value = "{{nomeDoUsuario}}";
+    });
+</script>

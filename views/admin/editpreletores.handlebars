@@ -1,0 +1,22 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+<div class="card">
+    <div class="card-body">
+        <h4>Editar Preletor</h4>
+        <form name="editPreletor" action="/admin/preletores/edit" method="POST">
+            <input type="hidden" value="{{preletor._id}}" name="id">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" class="form-control" value="{{preletor.nome}}" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" name="telefone" class="form-control" value="{{preletor.telefone}}">
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control" value="{{preletor.email}}">
+            
+            <button class="btn btn-success mt-2" type="submit">Salvar</button>
+        </form>
+    </div>
+</div>

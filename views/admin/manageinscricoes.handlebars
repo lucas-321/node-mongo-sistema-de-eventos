@@ -1,0 +1,43 @@
+<h4>Inscrições</h4>
+<hr>
+
+{{#if inscricoes.length}}
+    {{#each inscricoes}}
+
+        <div class="card mt-4">
+
+            <div class="hstack card-body">
+                <div class="p-2"><b>Congressista: </b>{{usuario.nome}}</div>
+                <div class="p-2 ms-auto">
+                    {{#if confirmacao}}
+                    <form action="/admin/inscricoes/cancelar_confirmacao" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar esta inscrição?');">
+                        <input type="hidden" name="inscricao" value="{{_id}}">
+                        <button type="submit" class="btn btn-danger mt-2">Cancelar Confirmação</button>
+                    </form>
+                    {{else}}
+                    <form action="/admin/inscricoes/confirmar" method="POST" onsubmit="return confirm('Tem certeza que deseja confirmar esta inscrição?');">
+                        <input type="hidden" name="inscricao" value="{{_id}}">  
+                        <button type="submit" class="btn btn-success mt-2">Confirmar Inscrição</button>
+                    </form>
+                    {{/if}}
+                </div>
+            </div>
+
+            {{!-- {{#if confirmacao}}
+                <p>Inscrição confirmada</p>
+                <form action="/admin/inscricoes/cancelar-confirmacao" method="POST">
+                    <input type="hidden" name="inscricao" value="{{_id}}">
+                    <button type="submit" class="btn btn-danger mt-2">Cancelar Confirmação</button>
+                </form>
+            {{else}}
+                <form action="/admin/inscricoes/confirmar" method="POST" onsubmit="return confirm('Tem certeza que deseja confirmar esta inscrição?');">
+                    <input type="hidden" name="inscricao" value="{{_id}}">
+                    <button type="submit" class="btn btn-success mt-2">Confirmar Inscrição</button>
+                </form>
+            {{/if}} --}}
+
+        </div>
+    {{/each}}
+{{else}}
+    <p>Nenhuma inscrição registrada</p>
+{{/if}}

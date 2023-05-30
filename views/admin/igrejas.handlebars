@@ -1,0 +1,24 @@
+<h4>Igrejas</h4>
+<hr>
+<a href="/admin/igrejas/add"><button class="btn btn-success">Nova igreja</button></a>
+
+{{#each igrejas}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <p><b>{{nome}}</b></p>
+            <small>Cidade: {{local.nome}}</small><br>
+            <small>Associação: {{associacao.nome}}</small><br>
+            <small>Telefone: {{telefone}}</small><br>
+            <small>Email: {{email}}</small><br>
+            <a href="/admin/igrejas/edit/{{_id}}"><button class="btn btn-primary">Editar</button></a>
+
+            <form action="/admin/igrejas/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este igreja?');">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Remover</button>
+            </form>
+
+        </div>
+    </div>
+{{else}}
+    <p>Nenhuma igreja registrada</p>
+{{/each}}

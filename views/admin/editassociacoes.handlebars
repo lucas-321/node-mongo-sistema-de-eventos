@@ -1,0 +1,19 @@
+{{#each editErros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+<h4>Editar Associação</h4>
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/associacoes/edit" method="POST">
+                <input type="hidden" name="id" value="{{associacao._id}}">
+                <label for="nome">Nome: </label>
+                <input type="text" id="nome" name="nome" placeholder="Nome da Associação" class="form-control" value="{{associacao.nome}}">
+                <label for="sigla">Sigla: </label> 
+                <input type="text" id="sigla" name="sigla" placeholder="Sigla" class="form-control" value="{{associacao.sigla}}">
+                <br>
+                <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+    </div>
+</div>

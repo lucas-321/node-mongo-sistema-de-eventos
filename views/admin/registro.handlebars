@@ -1,0 +1,43 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+{{/each}}
+
+<h3>Adicione um Diretor</h3>
+<div class="card">
+    <div class="card-body">
+        <form action="" method="post">
+            <label for="nome"><b>Nome:</b></label>
+                <input type="text" name="nome" id="nome" class="form-control" required>
+
+            <label for="sexo"><b>Sexo:</b></label>
+                <select name="sexo" id="sexo" class="form-control custom-select">
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                </select>
+
+            <label for="dataNascimento"><b>Data de Nascimento:</b></label>
+                <input type="date" name="dataNascimento" id="dataNascimento" class="form-control" required>
+
+            <label for="igreja"><b>Igreja:</b></label>
+            <select name="igreja" class="form-control custom-select">
+                {{#each igrejas}}
+                    <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                    <option value="0">Nenhum igreja registrado</option>
+                {{/each}}
+            </select>
+            
+            <label for="telefone"><b>Telefone:</b></label>
+                <input type="text" name="telefone" id="telefone" class="form-control" required>
+
+            <label for="nome"><b>Email:</b></label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            <label for="nome"><b>Senha:</b></label>
+                <input type="password" name="senha" id="senha" class="form-control" required>
+            <label for="nome"><b>Repita sua senha:</b></label>
+                <input type="password" name="senha2" id="senha2" class="form-control" required>
+            <button type="submit" class="btn btn-success mt-4">Criar conta</button>
+        </form>
+    </div>
+</div>

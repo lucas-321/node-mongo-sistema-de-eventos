@@ -1,0 +1,17 @@
+{{#each editErros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+<h4>Editar Tipo de Evento</h4>
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/tipoEventos/edit" method="POST">
+                <input type="hidden" name="id" value="{{tipoEvento._id}}">
+                <label for="descricao">Descrição: </label> 
+                <input type="text" id="descricao" name="descricao" placeholder="Descrição da Tipo de Evento" class="form-control" value="{{tipoEvento.descricao}}">
+                <br>
+                <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+    </div>
+</div>

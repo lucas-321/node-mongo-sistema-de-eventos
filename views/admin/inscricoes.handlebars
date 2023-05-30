@@ -1,0 +1,15 @@
+<h4>Eventos</h4>
+<hr>
+
+{{#each eventos}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <p><b>{{nome}}</b></p>
+            <small>Total de inscritos: {{inscritos}}</small><br>
+            <small>Vagas restantes: {{vagasRestantes}}</small><br>
+            <a href="/admin/inscricoes/gerenciar/{{_id}}"><button class="btn btn-primary">Gerenciar Inscrições</button></a>
+        </div>
+    </div>
+{{else}}
+    <p>Nenhum evento registrado</p>
+{{/each}}

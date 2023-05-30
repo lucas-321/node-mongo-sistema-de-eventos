@@ -1,0 +1,22 @@
+<h4>Preletores</h4>
+<hr>
+<a href="/admin/preletores/add"><button class="btn btn-success">Novo preletor</button></a>
+
+{{#each preletores}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <p><b>{{nome}}</b></p>
+            <small>Telefone: {{telefone}}</small><br>
+            <small>Email: {{email}}</small><br>
+            <a href="/admin/preletores/edit/{{_id}}"><button class="btn btn-primary">Editar</button></a>
+
+            <form action="/admin/preletores/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este preletor?');">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Remover</button>
+            </form>
+
+        </div>
+    </div>
+{{else}}
+    <p>Nenhum preletor registrado</p>
+{{/each}}

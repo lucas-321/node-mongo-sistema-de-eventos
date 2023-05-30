@@ -1,0 +1,22 @@
+<h4>Oficinas</h4>
+<hr>
+<a href="/admin/oficinas/add"><button class="btn btn-success">Nova oficina</button></a>
+
+{{#each oficinas}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <p><b>{{titulo}}</b></p>
+            <small>Preletor: {{preletor.nome}}</small><br>
+            <small>Evento: {{evento.nome}}</small><br>
+            <a href="/admin/oficinas/edit/{{_id}}"><button class="btn btn-primary">Editar</button></a>
+
+            <form action="/admin/oficinas/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este oficina?');">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Remover</button>
+            </form>
+
+        </div>
+    </div>
+{{else}}
+    <p>Nenhuma oficina registrada</p>
+{{/each}}

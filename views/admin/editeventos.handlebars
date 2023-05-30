@@ -1,0 +1,64 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+
+<div class="card">
+    <div class="card-body">
+        <h4>Editar Evento</h4>
+        <form name="editEvento" action="/admin/evento/edit" method="POST">
+            <input type="hidden" value="{{evento._id}}" name="id">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" class="form-control" value="{{evento.nome}}" required>
+            <label for="data">Data:</label>
+            <input type="date" name="data" class="form-control" value="{{dateFormat evento.data "YYYY-MM-DD"}}" required>
+            <label for="local">Local:</label>
+            <select name="local" id="local" class="form-control custom-select">
+                {{#each cidades}}
+                    <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                    <option value="0">Nenhum tipo de cidade registrada</option>
+                {{/each}}
+            </select><br>
+            <label for="tema">Tema:</label>
+            <input type="text" name="tema" class="form-control" value="{{evento.tema}}">
+            <label for="divisa">Divisa:</label>
+            <textarea name="divisa" class="form-control mt-2">{{evento.divisa}}</textarea>
+            <label for="tipo">Tipo de Evento:</label>
+            <select name="tipo" id="tipo" class="form-control custom-select">
+                {{#each tipoEventos}}
+                    <option value="{{_id}}">{{descricao}}</option>
+                {{else}}
+                    <option value="0">Nenhum tipo de evento registrado</option>
+                {{/each}}
+            </select><br>
+            <label for="dataAbreInscricao">Data de abertura das inscrições:</label>
+            <input type="date" name="dataAbreInscricao" class="form-control" value="{{dateFormat evento.dataAbreInscricao "YYYY-MM-DD"}}" required>
+            <label for="dataFechaInscricao">Data de encerramento das inscrições:</label>
+            <input type="date" name="dataFechaInscricao" class="form-control" value="{{dateFormat evento.dataFechaInscricao "YYYY-MM-DD"}}" required>
+
+            <label for="valorInscricao">Valor da Inscrição:</label>
+            <input type="number" name="valorInscricao" class="form-control" value="{{evento.valorInscricao}}" required>
+
+            <label for="totalVagas">Total de Vagas:</label>
+            <input type="number" name="totalVagas" class="form-control" value="{{evento.totalVagas}}">
+
+            <label for="custoTotalEstimado">Custo Estimado:</label>
+            <input type="number" name="custoTotalEstimado" class="form-control" value="{{evento.custoTotalEstimado}}">
+
+            <label for="arrecadacaoTotal">Arrecadação:</label>
+            <input type="number" name="arrecadacaoTotal" class="form-control" value="{{evento.arrecadacaoTotal}}">
+
+            <label for="custoTotal">Custo Total do Evento:</label>
+            <input type="number" name="custoTotal" class="form-control" value="{{evento.custoTotal}}">
+
+            <button class="btn btn-success mt-2" type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+  document.getElementById('tipo').value = "{{evento.tipo}}";
+  document.getElementById('local').value = "{{evento.local}}";
+</script>

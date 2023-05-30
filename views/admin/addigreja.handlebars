@@ -1,0 +1,43 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/igrejas/nova" method="POST">
+            <h4>Nova Igreja</h4>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" class="form-control" required>
+            <label for="sigla">Sigla:</label>
+            <input type="text" name="sigla" class="form-control" required>
+            
+            <label for="local">Cidade:</label>
+            <select name="local" class="form-control custom-select">
+                {{#each cidades}}
+                    <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                    <option value="0">Nenhum tipo de cidade registrada</option>
+                {{/each}}
+            </select><br>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" name="telefone" class="form-control">
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control">
+
+            <label for="associacao">Associação: </label>
+            <select name="associacao" class="form-control custom-select">
+                {{#each associacoes}}
+                    <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                    <option value="0">Nenhuma associação registrado</option>
+                {{/each}}
+            </select><br>
+
+            <input type="hidden" name="usuarioCadastro" value="{{nomeDoUsuario}}">
+
+            <button class="btn btn-success mt-2" type="submit">Cadastrar Igreja</button>
+        </form>
+    </div>
+</div>

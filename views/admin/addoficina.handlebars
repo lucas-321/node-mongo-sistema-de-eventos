@@ -1,0 +1,38 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/oficinas/nova" method="POST">
+            <h4>Nova Oficina</h4>
+            <label for="titulo"><b>Tema:</b></label>
+            <input type="text" name="titulo" class="form-control" required>
+            <label for="quantidadeInscritos"><b>Quantidade de Inscritos:</b></label>
+            <input type="text" name="quantidadeInscritos" class="form-control" required>
+            
+            <label for="preletor"><b>Preletor:</b></label>
+            <select name="preletor" class="form-control custom-select">
+                {{#each preletores}}
+                    <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                    <option value="0">Nenhum preletor registrado</option>
+                {{/each}}
+            </select>
+
+            <label for="evento"><b>Evento: </b></label>
+            <select name="evento" class="form-control custom-select">
+                {{#each eventos}}
+                    <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                    <option value="0">Nenhum evento registrado</option>
+                {{/each}}
+            </select><br>
+
+            <input type="hidden" name="usuarioCadastro" value="{{nomeDoUsuario}}">
+
+            <button class="btn btn-success mt-2" type="submit">Cadastrar Oficina</button>
+        </form>
+    </div>
+</div>

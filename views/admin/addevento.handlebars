@@ -1,0 +1,53 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/eventos/nova" method="POST">
+            <h4>Novo Evento</h4>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" class="form-control" required>
+            <label for="data">Data:</label>
+            <input type="date" name="data" class="form-control" required>
+            <label for="local">Local:</label>
+            <select name="local" class="form-control custom-select">
+                {{#each cidades}}
+                    <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                    <option value="0">Nenhum tipo de cidade registrada</option>
+                {{/each}}
+            </select><br>
+            <label for="tema">Tema:</label>
+            <input type="text" name="tema" class="form-control">
+            <label for="divisa">Divisa:</label>
+            <textarea name="divisa" class="form-control mt-2"></textarea>
+            <label for="tipo">Tipo de Evento: </label>
+            <select name="tipo" class="form-control custom-select">
+                {{#each tipoEventos}}
+                    <option value="{{_id}}">{{descricao}}</option>
+                {{else}}
+                    <option value="0">Nenhum tipo de evento registrado</option>
+                {{/each}}
+            </select><br>
+            <label for="dataAbreInscricao">Data de abertura das inscrições:</label>
+            <input type="date" name="dataAbreInscricao" class="form-control" required>
+            <label for="dataFechaInscricao">Data de encerramento das inscrições:</label>
+            <input type="date" name="dataFechaInscricao" class="form-control" required>
+
+            <label for="valorInscricao">Valor da Inscrição:</label>
+            <input type="number" name="valorInscricao" class="form-control" required>
+
+            <label for="totalVagas">Total de Vagas:</label>
+            <input type="number" name="totalVagas" class="form-control">
+
+            <label for="custoTotalEstimado">Custo Estimado:</label>
+            <input type="number" name="custoTotalEstimado" class="form-control">
+
+            <input type="hidden" name="usuarioCadastro" value="{{nomeDoUsuario}}">
+
+            <button class="btn btn-success mt-2" type="submit">Criar Evento</button>
+        </form>
+    </div>
+</div>

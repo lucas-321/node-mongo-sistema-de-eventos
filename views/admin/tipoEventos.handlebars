@@ -1,0 +1,19 @@
+<h4>Lista de Tipos de Eventos</h4>
+<hr>
+<a href="tipoEventos/add"><button class="btn btn-success">Novo Tipo de Evento</button></a>
+
+{{#each tipoEventos}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>{{descricao}}</h4>
+            <a href="tipoEventos/edit/{{_id}}"><button class="btn btn-primary mt-4">Editar</button></a>
+            
+            <form action="/admin/tipoEventos/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este tipo de evento?');">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Remover</button>
+            </form>
+        </div>
+    </div>
+{{else}}
+<h4 class="mt-3">Nenhum evento registrado</h4>
+{{/each}}
